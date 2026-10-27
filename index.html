@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Thingari Buchi! 💕</title>
+
+  <link rel="stylesheet" href="style.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="hearts-container" id="heartsContainer"></div>
+
+  <!-- SCREEN 1: PASSWORD -->
+  <section id="screen-passcode" class="screen active">
+    <div class="card">
+      <div class="icon-header">🔒✨</div>
+      <h1 class="cursive-title">Sister Security Check!</h1>
+      <p class="subtitle">
+        A little surprise for someone very special! 💗
+      </p>
+
+      <div class="input-group">
+        <input
+          type="password"
+          id="passcodeInput"
+          placeholder="Enter secret code..."
+          maxlength="10"
+          autocomplete="off"
+          aria-label="Birthday surprise password"
+        />
+        <button id="passcodeBtn" onclick="checkPasscode()">
+          Unlock 💖
+        </button>
+      </div>
+
+      <p class="hint">
+        Hint: The year we met for the first time 🥹❤️
+      </p>
+      <p id="passcodeError" class="error-msg" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <!-- SCREEN 2: WELCOME -->
+  <section id="screen-welcome" class="screen">
+    <div class="card">
+      <div class="icon-header">🎉👑</div>
+      <h1 class="cursive-title">Happy Birthday, Thingari Buchi!</h1>
+
+      <p class="subtitle">
+        To my favourite childhood partner, my first teacher,
+        and my forever annoying sister! ❤️
+      </p>
+
+      <div class="illustration-box">
+        <span class="big-emoji">👧🏻🎀👦🏻</span>
+        <p class="sweet-caption">One childhood. A million memories. Forever us. 💗</p>
+      </div>
+
+      <button class="btn-primary" onclick="goToScreen('screen-balloons')">
+        Start Your Surprise 🎁
+      </button>
+    </div>
+  </section>
+
+  <!-- SCREEN 3: BALLOONS -->
+  <section id="screen-balloons" class="screen">
+    <div class="card">
+      <h2 class="cursive-title">Pop the Balloons! 🎈</h2>
+      <p class="subtitle">
+        Every balloon has a little piece of my heart.
+        Pop them all, Akka! 💕
+      </p>
+
+      <div class="balloons-grid">
+        <button class="balloon balloon-1" onclick="popBalloon(1)" aria-label="Pop balloon 1">🎈<span>1</span></button>
+        <button class="balloon balloon-2" onclick="popBalloon(2)" aria-label="Pop balloon 2">🎈<span>2</span></button>
+        <button class="balloon balloon-3" onclick="popBalloon(3)" aria-label="Pop balloon 3">🎈<span>3</span></button>
+        <button class="balloon balloon-4" onclick="popBalloon(4)" aria-label="Pop balloon 4">🎈<span>4</span></button>
+      </div>
+
+      <p id="balloonProgress" class="hint">4 little surprises are waiting for you! 💗</p>
+
+      <div id="balloonWishBox" class="wish-modal hidden">
+        <p id="balloonWishText"></p>
+        <button class="btn-small" onclick="closeWish()">Got it, Bondam! 😂💕</button>
+      </div>
+
+      <button id="balloonsNextBtn" class="btn-primary hidden" onclick="goToScreen('screen-candle')">
+        Make a Wish 🎂
+      </button>
+    </div>
+  </section>
+
+  <!-- SCREEN 4: CANDLE -->
+  <section id="screen-candle" class="screen">
+    <div class="card">
+      <h2 class="cursive-title">Make a Wish, Akka! 🕯️</h2>
+      <p class="subtitle">
+        Close your eyes, think of something beautiful,
+        and tap the flame! ✨
+      </p>
+
+      <div class="cake-container">
+        <div class="cake">
+          <div class="cake-icing"></div>
+          <div class="candle">
+            <div id="flame" class="flame" onclick="blowCandle()"></div>
+          </div>
+        </div>
+      </div>
+
+      <p id="candleStatus" class="candle-text">Your wish is waiting! Tap the flame 🔥</p>
+
+      <button id="candleNextBtn" class="btn-primary hidden" onclick="goToScreen('screen-bouquet')">
+        Receive Flowers 💐
+      </button>
+    </div>
+  </section>
+
+  <!-- SCREEN 5: FLOWERS -->
+  <section id="screen-bouquet" class="screen">
+    <div class="card">
+      <h2 class="cursive-title">A Bouquet Just For You 🌹</h2>
+
+      <p class="subtitle">
+        For the sister who made my childhood a little more beautiful. ❤️
+      </p>
+
+      <div class="bouquet-illustration">💐🌹🌸🌷✨</div>
+
+      <p class="sweet-caption">
+        You deserve all the happiness, love, and beautiful things in this world. 🫶🏻
+      </p>
+
+      <button class="btn-primary" onclick="goToScreen('screen-letter')">
+        One Last Surprise 💌
+      </button>
+    </div>
+  </section>
+
+  <!-- SCREEN 6: LETTER -->
+  <section id="screen-letter" class="screen">
+    <div class="card scrollable">
+      <div class="icon-header">💌🫂</div>
+
+      <h2 class="cursive-title">Dear Thingari Buchi, ❤️</h2>
+
+      <div class="letter-body">
+        <p class="letter-opening">
+          Happy Birthday, Akka! 🥹🎂❤️
+        </p>
+
+        <p>
+          Sometimes I wish we could go back to our childhood days,
+          when our biggest problems were fighting over clothes,
+          things we both liked, and silly little reasons that somehow
+          turned into big arguments. 😂❤️
+        </p>
+
+        <p>
+          Nuvvu naa things vesukovadam, naa things teesukovadam,
+          chinna chinna vishayalaki godava padatam…
+          appudu avi entha irritating ga anipinchevo!
+          But now, when I think about those moments, I realise
+          that even those silly fights are memories I'll always
+          carry with me. 🫂💗
+        </p>
+
+        <p>
+          Growing up, I never realised how much I was learning
+          just by watching you. Maths aina, painting aina,
+          crafts aina… I learned so many things by seeing you
+          do them first. Sometimes, when people compared me
+          with you, I used to get angry. 😂 But honestly,
+          looking back, I realise how much of what I know today
+          started with watching you.
+        </p>
+
+        <p class="highlight-line">
+          You will always be my first teacher, Akka. ❤️
+        </p>
+
+        <p>
+          Not just because you taught me things, but because
+          you showed me things without even realising that
+          I was learning from you.
+        </p>
+
+        <p>
+          I know life is changing, and we both have our own
+          paths to follow. Konni chinna chinna disturbances
+          valla manam mundhu laaga maatladukolekapothunnam.
+          Sometimes, I really miss those old days, when we could
+          fight one minute and be normal the next. I hope that,
+          as we grow older, we find our way back to that comfort again. 🥹❤️
+        </p>
+
+        <p>
+          And Akka, one thing I genuinely wish for you is that
+          you always stay happy with all the people you want
+          in your life. Find your happiness, follow your dreams,
+          meet wonderful people, and live the life you've always wanted.
+        </p>
+
+        <p class="highlight-line">
+          But in the middle of all that happiness,
+          don't forget to miss me sometimes too, okay? 😂🥹❤️
+        </p>
+
+        <p>
+          No matter how busy life gets or how far our paths take us,
+          I hope I'll always be someone you think of when you
+          remember your childhood. Because you'll always be
+          a part of mine.
+        </p>
+
+        <p>
+          And about your future, Akka… I know your skills,
+          your talent, and your hard work will take you
+          somewhere amazing. I genuinely believe you'll get
+          a good job and make our parents feel so proud of you. ❤️
+        </p>
+
+        <p>
+          So please, don't be afraid of interviews. I know it's
+          normal to feel nervous, but never doubt yourself.
+          We have so much confidence in you, and I hope one day
+          you'll see yourself the way we see you. You've got
+          so much potential, and I believe in you more than you know. 🫶🏻✨
+        </p>
+
+        <p>
+          I may not always say these things out loud, and we
+          may not always express our feelings the way we should,
+          but that doesn't change how much you mean to me.
+        </p>
+
+        <p>
+          I don't expect us to be perfect. I just want us to
+          keep sharing our lives, laughing at stupid things,
+          annoying each other, celebrating each other's wins,
+          and making new memories even as we grow older.
+        </p>
+
+        <p>
+          Because no matter how many people come into our lives,
+          you'll always be the sister I grew up with, the person
+          I learned from, and my first teacher in so many little ways.
+        </p>
+
+        <p class="highlight-line">
+          Happy Birthday, my Thingari Buchi! 🎂❤️
+        </p>
+
+        <p>
+          Keep growing, keep shining, get that amazing job,
+          make our parents proud, and never stop believing in yourself.
+        </p>
+
+        <p>
+          And don't forget your little brother who learned
+          so much just by watching you. 😂❤️
+        </p>
+
+        <p class="highlight-line">
+          You'll always be my first teacher, my childhood partner,
+          and my Akka. Forever. 🫂💗
+        </p>
+
+        <p class="signature">
+          With all my love,<br>
+          <b>Your Bondam 🍩❤️</b>
+        </p>
+      </div>
+
+      <div class="final-surprise">
+        <div class="icon-header">💗✨</div>
+        <h2 class="cursive-title">One Last Thing...</h2>
+        <p>
+          No matter how much life changes, you'll always be my sister,
+          my childhood, and a part of my heart.
+        </p>
+        <p class="final-love">I love you, Akka. ❤️🫂</p>
+      </div>
+
+      <button class="btn-primary" onclick="restartSurprise()">
+        Relive Our Memories 🔄💕
+      </button>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
